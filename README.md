@@ -7,13 +7,13 @@
 Preview a change without writing:
 
 ```powershell
-dotnet run --project src\VHDPatchFix\VHDPatchFix.csproj -- --vhd "I:\B.vhd" --parent "I:\A.vhd" --dry-run
+vhdfix --vhd "I:\B.vhd" --parent "I:\A.vhd" --dry-run
 ```
 
 Patch the VHD and create the default `.bak` backup:
 
 ```powershell
-dotnet run --project src\VHDPatchFix\VHDPatchFix.csproj -- --vhd "I:\B.vhd" --parent "I:\A.vhd"
+vhdfix --vhd "I:\B.vhd" --parent "I:\A.vhd"
 ```
 
 Verify after writing:
