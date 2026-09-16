@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout
@@ -25,17 +25,17 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build src/VHDPatchFix/VHDPatchFix.csproj --no-restore --configuration Release
 
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
 
     - name: Publish
-      run: dotnet publish --configuration Release --output ./publish
+      run: dotnet publish src/VHDPatchFix/VHDPatchFix.csproj --configuration Release --runtime win-x64 --self-contained true --property PublishSingleFile=true --output ./publish
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: VHDPatchFix
+        name: VHDPatchFix-win-x64
         path: ./publish
         if-no-files-found: error
